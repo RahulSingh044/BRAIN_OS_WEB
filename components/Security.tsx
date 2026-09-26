@@ -9,28 +9,28 @@ export default function App() {
     {
       id: 0,
       icon: <Fingerprint className="w-5 h-5 text-zinc-400" />,
-      title: "OS level captures",
+      title: "Multichannel activity capture",
       status: "ACTIVE",
       highlight: false,
     },
     {
       id: 1,
-      icon: <Cpu className="w-5 h-5 text-zinc-400" />,
-      title: "Apple / Intel neural engine",
-      status: "HARDWARE ACCEL",
-      highlight: false,
-    },
-    {
-      id: 2,
       icon: <Database className="w-5 h-5 text-zinc-400" />,
-      title: "AES-256 SQLite database",
+      title: "SQLite + sqlite-vec storage",
       status: "LOCAL DISK ONLY",
       highlight: false,
     },
     {
+      id: 2,
+      icon: <Lock className="w-5 h-5 text-zinc-400" />,
+      title: "Browser extension → localhost only",
+      status: "LOOPBACK",
+      highlight: false,
+    },
+    {
       id: 3,
-      icon: <Server className="w-5 h-5 text-[#b8ff33]" />,
-      title: "Third party servers",
+      icon: <Server className="w-5 h-5 text-[#e6ff6a]" />,
+      title: "Third party data storage",
       status: "BLOCKED BY SYSTEM",
       highlight: true,
     },
@@ -38,24 +38,24 @@ export default function App() {
 
   const bottomFeatures = [
     {
-      icon: <Fingerprint className="w-6 h-6 text-[#b8ff33]" />,
-      title: "No cloud synchronization",
-      description: "No telemetry endpoints or remote cloud vectors. Everything is stored in an encrypted local database."
+      icon: <Fingerprint className="w-6 h-6 text-[#e6ff6a]" />,
+      title: "Data stays on your disk",
+      description: "All captured activity — files, commands, browser events, and sessions — is stored locally in SQLite. Your raw data never leaves your machine."
     },
     {
-      icon: <Lock className="w-6 h-6 text-[#b8ff33]" />,
-      title: "Air-gapped operation",
-      description: "Full indexing and semantic search remain available when completely disconnected from the internet."
+      icon: <Lock className="w-6 h-6 text-[#e6ff6a]" />,
+      title: "Zero product telemetry",
+      description: "Brain OS is built for extreme privacy. There are no tracking scripts, usage analytics, or hidden telemetry endpoints. Your activity remains entirely your own."
     },
     {
-      icon: <Cpu className="w-6 h-6 text-[#b8ff33]" />,
-      title: "Open-weight models",
-      description: "Local quantized GGUF and BERT architectures run with acceleration on your device's neural engine."
+      icon: <Cpu className="w-6 h-6 text-[#e6ff6a]" />,
+      title: "Multi-strategy search",
+      description: "Keyword, semantic, and structural search strategies run in parallel and are fused together for the most relevant results every time."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a08] text-zinc-100 font-sans selection:bg-[#b8ff33] selection:text-black py-16 px-4 sm:px-8 lg:px-16 flex flex-col justify-center">
+    <div id="security" className="min-h-screen bg-[#0a0a08] text-zinc-100 font-sans selection:bg-[#e6ff6a] selection:text-black py-16 px-4 sm:px-8 lg:px-16 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto w-full">
         
         {}
@@ -63,21 +63,21 @@ export default function App() {
           
           {/* Left Column: Headings & description */}
           <div className="lg:col-span-6 space-y-6">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif tracking-tight text-white leading-[1.05]">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white leading-[1.05]">
               Your memory <br className="hidden sm:inline" />
               stays on your <br className="hidden sm:inline" />
               drive. Period.
             </h1>
             
             <p className="text-zinc-400 text-base sm:text-lg max-w-lg leading-relaxed">
-              Unlike cloud AI tools that transmit every keystroke to third-party servers, Brain OS maintains a strict local-first security boundary. Your data never leaves your physical storage.
+              Brain OS keeps all your captured data in a local database on your machine. No cloud storage, no sync servers, no data exports. Your memory is physically yours.
             </p>
 
             <div>
               <a 
                 href="#whitepaper" 
                 onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center gap-2 text-white font-medium hover:text-[#b8ff33] transition-colors group pt-2"
+                className="inline-flex items-center gap-2 text-white font-medium hover:text-[#e6ff6a] transition-colors group pt-2"
               >
                 <span>Read the security whitepaper</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -90,14 +90,14 @@ export default function App() {
             <div className="bg-[#11110f] border border-zinc-800/80 rounded-xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group">
               
               {/* Subtle ambient glow behind card */}
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#b8ff33]/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#e6ff6a]/5 rounded-full blur-3xl pointer-events-none"></div>
 
               {/* Card Header */}
               <div className="flex items-center justify-between pb-6 mb-4 border-b border-zinc-800/80">
                 <span className="text-[11px] font-mono tracking-widest text-zinc-500 uppercase">
-                  LOCAL MACHINE SECURITY BOUNDARY
+                  PRIVACY-FIRST ARCHITECTURE
                 </span>
-                <div className="flex items-center gap-1.5 text-[#b8ff33] bg-[#b8ff33]/10 px-2.5 py-1 rounded text-xs font-mono">
+                <div className="flex items-center gap-1.5 text-[#e6ff6a] bg-[#e6ff6a]/10 px-2.5 py-1 rounded text-xs font-mono">
                   <Shield className="w-3.5 h-3.5" />
                   <span>SECURE</span>
                 </div>
@@ -114,15 +114,15 @@ export default function App() {
                       className={`flex items-center justify-between p-4 rounded-lg cursor-pointer transition-all duration-200 border ${
                         metric.highlight
                           ? isActive 
-                            ? 'bg-[#b8ff33] text-black border-[#b8ff33] shadow-lg shadow-[#b8ff33]/20' 
-                            : 'bg-[#b8ff33]/10 text-[#b8ff33] border-[#b8ff33]/40 hover:bg-[#b8ff33]/20'
+                            ? 'bg-[#e6ff6a] text-black border-[#e6ff6a] shadow-lg shadow-[#e6ff6a]/20' 
+                            : 'bg-[#e6ff6a]/10 text-[#e6ff6a] border-[#e6ff6a]/40 hover:bg-[#e6ff6a]/20'
                           : isActive
                             ? 'bg-zinc-800/60 border-zinc-700 text-white'
                             : 'bg-zinc-900/40 border-zinc-800/50 text-zinc-300 hover:bg-zinc-800/30'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`${metric.highlight && isActive ? 'text-black' : metric.highlight ? 'text-[#b8ff33]' : 'text-zinc-400'}`}>
+                        <div className={`${metric.highlight && isActive ? 'text-black' : metric.highlight ? 'text-[#e6ff6a]' : 'text-zinc-400'}`}>
                           {metric.icon}
                         </div>
                         <span className="font-medium text-sm sm:text-base">
@@ -132,7 +132,7 @@ export default function App() {
 
                       <span className={`text-xs font-mono tracking-wider font-semibold px-2 py-1 rounded ${
                         metric.highlight 
-                          ? isActive ? 'bg-black/10 text-black' : 'bg-[#b8ff33]/20 text-[#b8ff33]'
+                          ? isActive ? 'bg-black/10 text-black' : 'bg-[#e6ff6a]/20 text-[#e6ff6a]'
                           : 'bg-zinc-800/80 text-zinc-400'
                       }`}>
                         {metric.status}
@@ -145,7 +145,7 @@ export default function App() {
               {/* Interactive hint */}
               <div className="mt-6 pt-4 border-t border-zinc-800/50 flex items-center justify-between text-xs text-zinc-500 font-mono">
                 <span>Click items to inspect boundary status</span>
-                <span className="text-[#b8ff33] animate-pulse">● Live Shield Active</span>
+                <span className="text-[#e6ff6a] animate-pulse">● Live Shield Active</span>
               </div>
 
             </div>
@@ -161,7 +161,7 @@ export default function App() {
               className="bg-[#11110f]/60 hover:bg-[#11110f] border border-zinc-800/60 rounded-xl p-6 sm:p-8 transition-all duration-300 hover:border-zinc-700 group flex flex-col justify-between"
             >
               <div>
-                <div className="mb-5 inline-block p-3 rounded-lg bg-[#b8ff33]/10 border border-[#b8ff33]/20 group-hover:scale-105 transition-transform">
+                <div className="mb-5 inline-block p-3 rounded-lg bg-[#e6ff6a]/10 border border-[#e6ff6a]/20 group-hover:scale-105 transition-transform">
                   {feature.icon}
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2 tracking-tight">

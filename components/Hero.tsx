@@ -50,44 +50,52 @@ export default function BrainOSLanding() {
       }),
     );
 
+    let isVisible = true;
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+    });
+    observer.observe(canvas);
+
     const render = () => {
-      ctx.clearRect(0, 0, width, height);
+      if (isVisible) {
+        ctx.clearRect(0, 0, width, height);
 
-      // Draw connections
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+        // Draw connections
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 180) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            const opacity = (1 - dist / 180) * 0.22;
-            ctx.strokeStyle = `rgba(163, 230, 53, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
+            if (dist < 180) {
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              const opacity = (1 - dist / 180) * 0.22;
+              ctx.strokeStyle = `rgba(163, 230, 53, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
           }
         }
+
+        // Update and draw nodes
+        nodes.forEach((node) => {
+          node.x += node.vx;
+          node.y += node.vy;
+
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < height * 0.2 || node.y > height) node.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(163, 230, 53, ${node.alpha})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "rgba(163, 230, 53, 0.6)";
+          ctx.fill();
+          ctx.shadowBlur = 0; // reset
+        });
       }
-
-      // Update and draw nodes
-      nodes.forEach((node) => {
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < 0 || node.x > width) node.vx *= -1;
-        if (node.y < height * 0.2 || node.y > height) node.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(163, 230, 53, ${node.alpha})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "rgba(163, 230, 53, 0.6)";
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset
-      });
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -96,6 +104,7 @@ export default function BrainOSLanding() {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      observer.disconnect();
       if (animationFrameId !== undefined) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -103,7 +112,7 @@ export default function BrainOSLanding() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#0c0c0c] text-white font-sans overflow-x-hidden selection:bg-lime-500 selection:text-black">
+    <div id="hero" className="relative min-h-screen bg-[#0c0c0c] text-white font-sans overflow-x-hidden selection:bg-lime-500 selection:text-black">
       {/* Subtle Grid Background Pattern */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-25"
@@ -128,7 +137,7 @@ export default function BrainOSLanding() {
           {/* Badge pulled tightly close */}
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-[#141d11] border border-lime-500/30 text-lime-400 text-xs font-mono tracking-widest uppercase shadow-lg shadow-lime-950/20">
             <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
-            100% OFFLINE PERSONAL MEMORY ENGINE
+            LOCAL-FIRST PERSONAL MEMORY ENGINE
           </div>
 
           {/* Main Title - Scaled up larger */}
@@ -138,14 +147,14 @@ export default function BrainOSLanding() {
 
           {/* Subheading */}
           <p className="text-2xl sm:text-3xl md:text-4xl font-medium text-neutral-200 tracking-tight mb-6 max-w-2xl">
-            Your computer, equipped with seamless memory.
+            Talk to your files like an intelligent assistant.
           </p>
 
           {/* Descriptive Paragraph */}
           <p className="text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed mb-10 font-normal">
-            Brain OS runs silently on your machine, turning browser sessions,
-            terminal output, and document edits into an instantly searchable
-            local knowledge graph.
+            Brain OS captures your terminal, browser, files, and app activity
+            into an instantly searchable local knowledge base. Query with
+            natural language. Privacy-first. Cross-platform. Yours.
           </p>
 
           {/* CTA Buttons */}
