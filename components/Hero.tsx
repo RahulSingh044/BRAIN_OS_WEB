@@ -6,16 +6,13 @@ import {
   Search,
   Command,
   Terminal,
-  Cpu,
-  Database,
-  ShieldCheck,
-  Zap,
 } from "lucide-react";
 
 export default function BrainOSLanding() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const isDisabled = true;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -112,7 +109,10 @@ export default function BrainOSLanding() {
   }, []);
 
   return (
-    <div id="hero" className="relative min-h-screen bg-[#0c0c0c] text-white font-sans overflow-x-hidden selection:bg-lime-500 selection:text-black">
+    <div
+      id="hero"
+      className="relative min-h-screen bg-[#0c0c0c] text-white font-sans overflow-x-hidden selection:bg-lime-500 selection:text-black"
+    >
       {/* Subtle Grid Background Pattern */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-25"
@@ -132,21 +132,15 @@ export default function BrainOSLanding() {
       />
 
       {/* Main Container */}
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-8 md:py-12 max-w-6xl mx-auto">
-        <div className="flex flex-col items-center text-center my-auto py-6 max-w-4xl">
-          {/* Badge pulled tightly close */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full bg-[#141d11] border border-lime-500/30 text-lime-400 text-xs font-mono tracking-widest uppercase shadow-lg shadow-lime-950/20">
-            <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
-            LOCAL-FIRST PERSONAL MEMORY ENGINE
-          </div>
-
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-8 md:py-12 mx-auto">
+        <div className="w-full flex flex-col items-center text-center my-auto py-6">
           {/* Main Title - Scaled up larger */}
-          <h1 className="text-7xl sm:text-8xl md:text-9xl font-black tracking-tight text-white mb-6 drop-shadow-sm">
+          <h1 className="text-7xl sm:text-8xl md:text-[16vh] font-black tracking-tight text-white drop-shadow-sm">
             Brain OS
           </h1>
 
           {/* Subheading */}
-          <p className="text-2xl sm:text-3xl md:text-4xl font-medium text-neutral-200 tracking-tight mb-6 max-w-2xl">
+          <p className="text-xl sm:text-3xl md:text-3xl text-white/70 tracking-tight mb-6 max-w-2xl">
             Talk to your files like an intelligent assistant.
           </p>
 
@@ -159,9 +153,18 @@ export default function BrainOSLanding() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg cursor-pointer bg-[#e6ff6a] hover:bg-lime-300 text-neutral-950 font-semibold text-sm transition-all shadow-lg shadow-lime-400/20 active:scale-95">
-              Download for free
-              <Download className="w-4 h-4 stroke-[2.5]" />
+            <button
+              disabled={isDisabled}
+              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all text-neutral-950
+              ${
+                isDisabled
+                  ? "bg-[#e6ff6a] hover:bg-lime-300 cursor-not-allowed opacity-60"
+                  : "bg-[#e6ff6a] hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
+              }`}
+            >
+              {isDisabled
+                ? "Coming Soon"
+                : `Download For Free${(<Download className="w-4 h-4" />)}`}
             </button>
 
             <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">

@@ -73,7 +73,7 @@ export default function InstantRecallSection() {
   };
 
   return (
-    <div id="features" className="relative min-h-screen bg-[#e6ff6a] text-neutral-950 font-sans px-4 py-16 md:px-12 lg:px-20 flex flex-col justify-center selection:bg-neutral-950 selection:text-[#ccff00] border-b-8 border-neutral-950">
+    <div id="features" className="relative min-h-screen bg-[#e6ff6a] text-neutral-950 font-sans px-4 py-16 md:px-12 lg:px-20 flex flex-col justify-center selection:bg-neutral-950 selection:text-[#ccff00]">
       
       {/* Top Header & Intro Grid */}
       <div className="max-w-7xl mx-auto w-full mb-12">
@@ -116,6 +116,7 @@ export default function InstantRecallSection() {
               type="text"
               value={searchQuery}
               readOnly
+              placeholder="Ask a question about your files..."
               onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
               className="w-full bg-transparent text-sm sm:text-base text-neutral-100 placeholder-neutral-600 focus:outline-none cursor-default"
             />
@@ -132,7 +133,7 @@ export default function InstantRecallSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 bg-[#0e0e0e]">
           
           {/* Left Side: Retrieved Terminal Capture */}
-          <div className="relative lg:col-span-9 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-neutral-800/80 flex flex-col justify-between min-h-[300px]">
+          <div className="relative lg:col-span-9 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-neutral-800/80 flex flex-col justify-between min-h-75">
             
             {/* Loading State Overlay */}
             <div className={`absolute inset-0 flex flex-col items-start justify-start p-6 sm:p-8 bg-[#0e0e0e] z-10 transition-opacity duration-300 ${searchStep === 1 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -146,7 +147,7 @@ export default function InstantRecallSection() {
               <div>
                 {/* Result Meta */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[11px] font-mono tracking-wider text-lime-400 font-semibold uppercase min-h-[16px]">
+                  <span className="text-[11px] font-mono tracking-wider text-lime-400 font-semibold uppercase min-h-4">
                     <TypewriterText text="RETRIEVED FROM TERMINAL CAPTURE" show={searchStep >= 2} speed={30} isStatic={searchStep === 0} />
                   </span>
                   <span className={`text-[11px] font-mono tracking-widest text-neutral-500 bg-neutral-900 px-2.5 py-1 rounded border border-neutral-800 transition-all duration-700 ease-out ${searchStep === 0 || searchStep >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
@@ -189,7 +190,7 @@ export default function InstantRecallSection() {
               </div>
 
               {/* Footer Context Link */}
-              <div className={`mt-6 pt-4 border-t border-neutral-900 flex items-center gap-2 text-xs text-neutral-400 font-mono min-h-[40px] transition-all duration-500 ${searchStep === 0 || searchStep >= 4 ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`mt-6 pt-4 border-t border-neutral-900 flex items-center gap-2 text-xs text-neutral-400 font-mono min-h-10 transition-all duration-500 ${searchStep === 0 || searchStep >= 4 ? 'opacity-100' : 'opacity-0'}`}>
                 <div className={searchStep === 0 || searchStep >= 4 ? 'opacity-100' : 'opacity-0'}>
                   <Terminal className="w-3.5 h-3.5 text-lime-400 shrink-0 inline mr-2" />
                   <TypewriterText text="Related: Brave tab - PostgreSQL SSL connection parameters reference, Tuesday at 2:40 PM." show={searchStep >= 4} speed={25} isStatic={searchStep === 0} />
@@ -207,25 +208,25 @@ export default function InstantRecallSection() {
               </div>
 
               {/* Timeline Items */}
-              <div className="relative pl-5 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-neutral-800">
+              <div className="relative pl-5 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-neutral-800">
                 
                 {/* Timeline Item 1 */}
                 <div className="relative">
-                  <div className="absolute -left-[23px] top-1.5 w-2 h-2 rounded-full bg-neutral-600 ring-4 ring-[#111111]"></div>
+                  <div className="absolute -left-5.75 top-1.5 w-2 h-2 rounded-full bg-neutral-600 ring-4 ring-[#111111]"></div>
                   <div className="text-[11px] font-mono text-neutral-500">2:39 / Browser</div>
                   <div className="text-xs text-neutral-300 font-medium mt-0.5">SSL reference</div>
                 </div>
 
                 {/* Timeline Item 2 */}
                 <div className="relative">
-                  <div className="absolute -left-[23px] top-1.5 w-2 h-2 rounded-full bg-neutral-600 ring-4 ring-[#111111]"></div>
+                  <div className="absolute -left-5.75 top-1.5 w-2 h-2 rounded-full bg-neutral-600 ring-4 ring-[#111111]"></div>
                   <div className="text-[11px] font-mono text-neutral-500">2:42 / File System</div>
                   <div className="text-xs text-neutral-300 font-medium mt-0.5">dev.env modified</div>
                 </div>
 
                 {/* Timeline Item 3 (Active) */}
                 <div className="relative">
-                  <div className="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-lime-400 ring-4 ring-lime-950/50 animate-pulse"></div>
+                  <div className="absolute -left-5.75 top-1.5 w-2.5 h-2.5 rounded-full bg-lime-400 ring-4 ring-lime-950/50 animate-pulse"></div>
                   <div className="text-[11px] font-mono text-lime-400 font-semibold">2:44 / Terminal</div>
                   <div className="text-xs text-white font-medium mt-0.5">Connection tested</div>
                 </div>

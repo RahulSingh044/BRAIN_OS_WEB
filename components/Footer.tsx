@@ -30,7 +30,8 @@ export default function BrainOSFooter() {
 
           {/* Description */}
           <p className="text-black/80 text-base md:text-lg max-w-md font-normal leading-relaxed">
-            Your personal digital memory. Everything you capture stays securely on your own computer. Always private, always yours.
+            Your personal digital memory. Everything you capture stays securely
+            on your own computer. Always private, always yours.
           </p>
 
           {/* Download Link */}
@@ -192,7 +193,7 @@ export default function BrainOSFooter() {
         </div>
       </div>
 
-      <div className="w-full min-h-[calc(15vw+1rem)] lg:min-h-[calc(14.5vw+1rem)] overflow-hidden text-center select-none pt-4">
+      <div className="w-full h-[8vw] lg:h-[11.5vw] overflow-hidden text-center select-none pt-4">
         <h1 className="text-[15vw] lg:text-[14.5vw] font-black tracking-tighter leading-none text-black opacity-95 uppercase whitespace-nowrap">
           Brain OS
         </h1>

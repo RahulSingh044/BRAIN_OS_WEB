@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 import { Zap, Network, Layers } from 'lucide-react';
 
 export default function CognitiveArchitecture() {
