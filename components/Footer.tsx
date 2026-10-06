@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Crosshair,
@@ -35,13 +36,13 @@ export default function BrainOSFooter() {
           </p>
 
           {/* Download Link */}
-          <a
-            href="#download"
+          <Link
+            href="/#download"
             className="inline-flex items-center space-x-2 text-black font-semibold text-base group hover:opacity-75 transition-opacity pt-2"
           >
             <span>Download Brain OS</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </div>
 
         {/* Right Navigation Columns */}
@@ -53,28 +54,28 @@ export default function BrainOSFooter() {
             </h4>
             <ul className="flex flex-col space-y-3 text-sm font-medium">
               <li>
-                <a
-                  href="#features"
+                <Link
+                  href="/#features"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Features
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#architecture"
+                <Link
+                  href="/#architecture"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Desktop App
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#security"
+                <Link
+                  href="/#security"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Chrome Extension
-                </a>
+                </Link>
               </li>
               <li>
                 <a

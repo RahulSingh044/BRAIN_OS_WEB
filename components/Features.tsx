@@ -111,7 +111,19 @@ export default function InstantRecallSection() {
         {/* Search Query Input Bar */}
         <div className="px-6 py-5 border-b border-neutral-800 flex items-center justify-between gap-4 bg-[#111111]">
           <div className="flex items-center gap-3 w-full">
-            <Search className={`w-5 h-5 shrink-0 ${searchStep === 1 ? 'text-lime-400 animate-spin' : 'text-neutral-400'}`} />
+            <button
+              type="button"
+              onClick={handleSearch}
+              disabled={searchStep > 0}
+              aria-label={searchStep > 0 ? "Searching" : "Run example search"}
+              title={searchStep > 0 ? "Searching" : "Run example search"}
+              className="shrink-0 rounded p-1 text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-lime-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 disabled:cursor-wait"
+            >
+              <Search
+                aria-hidden="true"
+                className={`h-5 w-5 ${searchStep === 1 ? 'text-lime-400 animate-spin' : ''}`}
+              />
+            </button>
             <input
               type="text"
               value={searchQuery}

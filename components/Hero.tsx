@@ -4,15 +4,63 @@ import {
   Download,
   ArrowRight,
   Search,
-  Command,
   Terminal,
+  Command,
 } from "lucide-react";
+
+const sampleQuestions = [
+  "What was that database config I used on Tuesday?",
+  "Which article had the PostgreSQL SSL fix?",
+  "What was I working on before lunch?",
+  "Where did I save the project notes?",
+  "Where is my graph code file?",
+  "Where is my study material for 4th semester?",
+];
 
 export default function BrainOSLanding() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isDisabled = true;
+
+  useEffect(() => {
+    let promptIndex = 0;
+    let characterIndex = 0;
+    let isDeleting = false;
+    let timeoutId: number;
+
+    const animatePrompt = () => {
+      const prompt = sampleQuestions[promptIndex];
+
+      if (!isDeleting) {
+        characterIndex += 1;
+        setSearchQuery(prompt.slice(0, characterIndex));
+
+        if (characterIndex === prompt.length) {
+          isDeleting = true;
+          timeoutId = window.setTimeout(animatePrompt, 300);
+          return;
+        }
+
+        timeoutId = window.setTimeout(animatePrompt, 30);
+        return;
+      }
+
+      characterIndex -= 1;
+      setSearchQuery(prompt.slice(0, characterIndex));
+
+      if (characterIndex === 0) {
+        isDeleting = false;
+        promptIndex = (promptIndex + 1) % sampleQuestions.length;
+        timeoutId = window.setTimeout(animatePrompt, 350);
+        return;
+      }
+
+      timeoutId = window.setTimeout(animatePrompt, 24);
+    };
+
+    timeoutId = window.setTimeout(animatePrompt, 500);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -141,14 +189,15 @@ export default function BrainOSLanding() {
 
           {/* Subheading */}
           <p className="text-xl sm:text-3xl md:text-3xl text-white/70 tracking-tight mb-6 max-w-2xl">
-            Talk to your files like an intelligent assistant.
+            Talk to your digital knowledge like an intelligent assistant.
           </p>
 
           {/* Descriptive Paragraph */}
           <p className="text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed mb-10 font-normal">
-            Brain OS captures your terminal, browser, files, and app activity
-            into an instantly searchable local knowledge base. Query with
-            natural language. Privacy-first. Cross-platform. Yours.
+            Brain OS turns your files, browser activity, terminal history, and
+            digital work into a searchable personal knowledge base. Ask questions
+            in natural language, recall past work, and discover connections across
+            your data — privately and locally.
           </p>
 
           {/* CTA Buttons */}
@@ -156,28 +205,28 @@ export default function BrainOSLanding() {
             <button
               disabled={isDisabled}
               className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all text-neutral-950
-              ${
-                isDisabled
+              ${isDisabled
                   ? "bg-[#e6ff6a] hover:bg-lime-300 cursor-not-allowed opacity-60"
                   : "bg-[#e6ff6a] hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
-              }`}
+                }`}
             >
               {isDisabled
                 ? "Coming Soon"
                 : `Download For Free${(<Download className="w-4 h-4" />)}`}
             </button>
-
+            <a href="#architecture" className="w-full sm:w-auto">
             <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">
               See how it works
               <ArrowRight className="w-4 h-4" />
             </button>
+            </a>
           </div>
         </div>
 
         {/* Bottom Floating Search Component (Brain OS Recall) */}
         <div className="w-full max-w-3xl mt-8 mb-4">
           <div
-            className={`rounded-xl bg-[#111111]/90 backdrop-blur-md border transition-all duration-300 shadow-2xl ${isFocused ? "border-lime-500/50 shadow-lime-500/10" : "border-neutral-800"}`}
+            className="rounded-xl bg-[#111111]/90 backdrop-blur-md border border-neutral-800 shadow-2xl"
           >
             {/* Top Bar inside Search Box */}
             <div className="flex items-center justify-between px-4 py-2.5 border-b border-neutral-800/80 text-[11px] font-mono tracking-wider text-neutral-400">
@@ -190,7 +239,7 @@ export default function BrainOSLanding() {
               <div className="flex items-center gap-1.5 text-neutral-500">
                 <span className="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse"></span>
                 <span className="text-[10px] tracking-widest text-neutral-400">
-                  LOCAL INDEX / READY
+                  EXAMPLE PROMPTS
                 </span>
               </div>
             </div>
@@ -200,16 +249,16 @@ export default function BrainOSLanding() {
               <Search className="w-4 h-4 text-neutral-500 mr-3 shrink-0" />
               <input
                 type="text"
+                aria-label="Example questions Brain OS can help answer"
+                aria-live="off"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                placeholder="What was that database config I used on Tuesday?"
-                className="w-full bg-transparent text-sm sm:text-base text-neutral-200 placeholder-neutral-600 focus:outline-none"
+                readOnly
+                placeholder="Explore the kinds of questions Brain OS can help answer..."
+                className="w-full cursor-default bg-transparent text-sm text-neutral-200 placeholder-neutral-600 focus:outline-none sm:text-base"
               />
               <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-400 text-xs font-mono shrink-0 ml-2">
                 <Command className="w-3 h-3" />
-                <span>Space</span>
+                <span>Enter</span>
               </div>
             </div>
           </div>
