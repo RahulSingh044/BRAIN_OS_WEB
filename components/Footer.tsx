@@ -15,8 +15,8 @@ import {
 
 export default function BrainOSFooter() {
   return (
-    <footer className="w-full bg-[#e6ff6a] text-black font-sans selection:bg-black selection:text-[white] overflow-hidden pt-16 px-6 md:px-16 flex flex-col justify-between">
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+    <footer className="w-full bg-[#e6ff6a] text-black font-sans selection:bg-black selection:text-[white] overflow-hidden pt-16 px-6 md:px-10 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10">
         {/* Left Column: Brand & Description */}
         <div className="lg:col-span-6 flex flex-col items-start space-y-6">
           {/* Logo */}

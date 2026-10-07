@@ -1,7 +1,9 @@
-import { Crosshair, ArrowDown } from "lucide-react";
+import { Crosshair, ArrowDown, Download } from "lucide-react";
 import Link from "next/link";
+import { toggleComingSoonBtn } from "@/lib/DownloadToggle";
 
 export default function BrainOSNavbar() {
+  const isDisabled = toggleComingSoonBtn();
   return (
     <header className="fixed z-50 w-full bg-[#0d0d0d] text-white border-b border-[#222222] px-6 md:px-12 py-4 flex items-center justify-between font-sans select-none">
       <Link
@@ -36,13 +38,19 @@ export default function BrainOSNavbar() {
 
       <div className="flex items-center space-x-6">
         {/* Download Button */}
-        <Link
-          href="/#download"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-5 py-3 text-sm font-semibold text-neutral-950 transition-all hover:bg-lime-300 active:scale-95 sm:px-7 sm:py-3.5"
+        <button
+          disabled={isDisabled}
+          className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all text-neutral-950
+              ${isDisabled
+              ? "bg-[#e6ff6a] hover:bg-lime-300 cursor-not-allowed opacity-60"
+              : "bg-[#e6ff6a] hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
+            }`}
         >
-          Download
-          <ArrowDown aria-hidden="true" className="h-4 w-4 stroke-[2.5]" />
-        </Link>
+          {isDisabled
+            ? "Coming Soon"
+            : `Download For Free${(<Download className="w-4 h-4" />)}`}
+        </button>
+
       </div>
     </header>
   );

@@ -11,7 +11,7 @@ const beliefs = [
 export default function About() {
   return (
     <main className="bg-[#0a0a08] font-sans text-zinc-100 selection:bg-[#e6ff6a] selection:text-black">
-      <section className="relative flex min-h-[76vh] items-center overflow-hidden px-6 pb-20 pt-32 md:px-12 md:pt-36">
+      <section className="relative flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-32 md:px-12 md:pt-36">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 top-16 h-96 w-96 rounded-full bg-[#e6ff6a]/[0.06] blur-[100px]"

@@ -7,6 +7,7 @@ import {
   Terminal,
   Command,
 } from "lucide-react";
+import { toggleComingSoonBtn } from "@/lib/DownloadToggle";
 
 const sampleQuestions = [
   "What was that database config I used on Tuesday?",
@@ -20,7 +21,7 @@ const sampleQuestions = [
 export default function BrainOSLanding() {
   const [searchQuery, setSearchQuery] = useState("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const isDisabled = true;
+  const isDisabled = toggleComingSoonBtn();
 
   useEffect(() => {
     let promptIndex = 0;
@@ -215,10 +216,10 @@ export default function BrainOSLanding() {
                 : `Download For Free${(<Download className="w-4 h-4" />)}`}
             </button>
             <a href="#architecture" className="w-full sm:w-auto">
-            <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">
-              See how it works
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">
+                See how it works
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </a>
           </div>
         </div>

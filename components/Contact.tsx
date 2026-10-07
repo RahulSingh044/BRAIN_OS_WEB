@@ -1,23 +1,58 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { ArrowLeft, ArrowUpRight, Mail, Send } from "lucide-react";
+import { sendEmail } from "@/lib/sendEmail";
 import Link from "next/link";
 
-const sampleEmail = "hello@brainos.example";
+const email = "rahulsingh.dev.36@gmail.com";
 
 export default function Contact() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
-    const formData = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(String(formData.get("subject")));
-    const body = encodeURIComponent(
-      `From: ${formData.get("name")} (${formData.get("email")})\n\n${formData.get("message")}`,
-    );
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatusMessage(null);
 
-    window.location.href = `mailto:${sampleEmail}?subject=${subject}&body=${body}`;
-  }
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const { data, error } = await sendEmail({
+        name: (formData.get("name") as string) || "",
+        email: (formData.get("email") as string) || "",
+        subject: (formData.get("subject") as string) || "",
+        message: (formData.get("message") as string) || "",
+      });
+
+      if (error) {
+        console.error("Resend error:", error);
+        setStatusMessage({
+          type: "error",
+          text: "Failed to send email. Please try again or email us directly.",
+        });
+      } else if (data) {
+        setStatusMessage({
+          type: "success",
+          text: "Email sent successfully! We'll get back to you soon.",
+        });
+        form.reset();
+      }
+    } catch (err) {
+      console.error("Send error:", err);
+      setStatusMessage({
+        type: "error",
+        text: "An error occurred while sending your message.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0a0a08] px-6 pb-20 pt-32 font-sans text-zinc-100 selection:bg-[#e6ff6a] selection:text-black md:px-12 md:pt-36">
@@ -71,16 +106,12 @@ export default function Contact() {
                 <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
               </a>
               <a
-                href={`mailto:${sampleEmail}`}
+                href={`mailto:${email}`}
                 className="inline-flex items-center gap-2 text-sm text-zinc-300 transition-colors hover:text-[#e6ff6a]"
               >
                 <Mail aria-hidden="true" className="h-4 w-4" />
-                {sampleEmail}
+                {email}
               </a>
-              <p className="text-xs text-zinc-600">
-                Sample email address — replace with the team inbox before
-                launch.
-              </p>
             </div>
           </section>
 
@@ -175,16 +206,27 @@ export default function Contact() {
                 </div>
               </div>
 
+              {statusMessage && (
+                <div
+                  className={`mt-6 rounded-lg px-4 py-3 text-sm ${statusMessage.type === "success"
+                      ? "border border-[#e6ff6a]/30 bg-[#e6ff6a]/10 text-[#e6ff6a]"
+                      : "border border-red-500/30 bg-red-500/10 text-red-400"
+                    }`}
+                >
+                  {statusMessage.text}
+                </div>
+              )}
+
               <div className="mt-7 flex flex-col items-start justify-between gap-4 border-t border-zinc-800 pt-6 sm:flex-row sm:items-center">
                 <p className="max-w-sm text-xs leading-relaxed text-zinc-500">
-                  This opens your email app with your message addressed to the
-                  sample inbox.
+                  Send a message directly to our team inbox.
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-5 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-lime-300"
+                  disabled={loading}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-5 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-lime-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Compose email
+                  {loading ? "Sending..." : "Send Message"}
                   <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                 </button>
               </div>
