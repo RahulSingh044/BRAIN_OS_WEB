@@ -37,20 +37,13 @@ export default function BrainOSNavbar() {
       </nav>
 
       <div className="flex items-center space-x-6">
-        {/* Download Button */}
-        <button
-          disabled={isDisabled}
-          className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all text-neutral-950
-              ${isDisabled
-              ? "bg-[#e6ff6a] hover:bg-lime-300 cursor-not-allowed opacity-60"
-              : "bg-[#e6ff6a] hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
-            }`}
+        <Link
+          href="/pre-register"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-7 py-3.5 text-sm font-semibold text-neutral-950 transition-all hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
         >
-          {isDisabled
-            ? "Coming Soon"
-            : `Download For Free${(<Download className="w-4 h-4" />)}`}
-        </button>
-
+          <Download className="h-4 w-4" />
+          Pre-register
+        </Link>
       </div>
     </header>
   );

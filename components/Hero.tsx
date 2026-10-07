@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Download,
   ArrowRight,
   Search,
   Terminal,
   Command,
+  Download,
 } from "lucide-react";
-import { toggleComingSoonBtn } from "@/lib/DownloadToggle";
+import Link from "next/link";
 
 const sampleQuestions = [
   "What was that database config I used on Tuesday?",
@@ -21,7 +21,6 @@ const sampleQuestions = [
 export default function BrainOSLanding() {
   const [searchQuery, setSearchQuery] = useState("");
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const isDisabled = toggleComingSoonBtn();
 
   useEffect(() => {
     let promptIndex = 0;
@@ -203,18 +202,13 @@ export default function BrainOSLanding() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-            <button
-              disabled={isDisabled}
-              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all text-neutral-950
-              ${isDisabled
-                  ? "bg-[#e6ff6a] hover:bg-lime-300 cursor-not-allowed opacity-60"
-                  : "bg-[#e6ff6a] hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
-                }`}
+            <Link
+              href="/pre-register"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-7 py-3.5 text-sm font-semibold text-neutral-950 transition-all hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
             >
-              {isDisabled
-                ? "Coming Soon"
-                : `Download For Free${(<Download className="w-4 h-4" />)}`}
-            </button>
+              <Download className="h-4 w-4" />
+              Pre-register
+            </Link>
             <a href="#architecture" className="w-full sm:w-auto">
               <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">
                 See how it works
