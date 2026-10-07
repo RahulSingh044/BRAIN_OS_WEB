@@ -1,20 +1,38 @@
-import { Crosshair, ArrowDown, Download } from "lucide-react";
+import Image from "next/image";
+import { Download } from "lucide-react";
 import Link from "next/link";
-import { toggleComingSoonBtn } from "@/lib/DownloadToggle";
 
 export default function BrainOSNavbar() {
-  const isDisabled = toggleComingSoonBtn();
   return (
     <header className="fixed z-50 w-full bg-[#0d0d0d] text-white border-b border-[#222222] px-6 md:px-12 py-4 flex items-center justify-between font-sans select-none">
       <Link
         href="/"
-        className="flex items-center space-x-3 cursor-pointer group"
+        className="brand-link flex items-center space-x-3 cursor-pointer"
       >
-        <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center bg-[#161616] group-hover:border-white/50 transition-colors">
-          <Crosshair className="w-4 h-4 text-white stroke-2" />
-        </div>
-        <span className="text-lg font-bold tracking-tight text-white">
+        <span className="brand-logo relative inline-flex h-10 w-10 shrink-0">
+          <Image
+            src="/brainos-logo-lime.png"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+            priority
+          />
+          <Image
+            src="/brainos-logo-lime.png"
+            alt=""
+            aria-hidden="true"
+            width={40}
+            height={40}
+            className="brand-logo-white h-10 w-10 object-contain"
+            priority
+          />
+        </span>
+        <span className="brand-name relative text-xl font-bold tracking-tight text-white">
           Brain OS
+          <span aria-hidden="true" className="brand-name-lime">
+            Brain OS
+          </span>
         </span>
       </Link>
 

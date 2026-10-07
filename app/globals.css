@@ -25,6 +25,39 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.brand-logo-white,
+.brand-name-lime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand-logo-white {
+  filter: brightness(0) invert(1);
+}
+
+.brand-name-lime {
+  color: #e6ff6a;
+  white-space: nowrap;
+  transition-delay: 80ms;
+}
+
+.brand-link:hover .brand-logo-white,
+.brand-link:hover .brand-name-lime,
+.brand-link:focus-visible .brand-logo-white,
+.brand-link:focus-visible .brand-name-lime {
+  clip-path: inset(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo-white,
+  .brand-name-lime {
+    transition: none;
+  }
+}
+
 /* Hide the native cursor everywhere */
 *,
 *::before,
