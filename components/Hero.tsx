@@ -181,7 +181,7 @@ export default function BrainOSLanding() {
 
       {/* Main Container */}
       <div className="relative z-10 flex flex-col items-center justify-between min-h-screen px-4 py-8 md:py-12 mx-auto">
-        <div className="w-full flex flex-col items-center text-center my-auto py-6">
+        <div className="w-full flex flex-col items-center text-center my-auto py-6 translate-y-10 md:translate-y-4">
           {/* Main Title - Scaled up larger */}
           <h1 className="text-7xl sm:text-8xl md:text-[16vh] font-black tracking-tight text-white drop-shadow-sm">
             Brain OS
@@ -201,19 +201,20 @@ export default function BrainOSLanding() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/pre-register"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-7 py-3.5 text-sm font-semibold text-neutral-950 transition-all hover:bg-lime-300 active:scale-95 cursor-pointer shadow-lg shadow-lime-400/20"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#e6ff6a] px-7 py-3.5 text-sm font-semibold text-neutral-950 shadow-lg shadow-lime-400/20 transition-all hover:bg-lime-300 active:scale-95"
             >
               <Download className="h-4 w-4" />
               Pre-register
             </Link>
-            <a href="#architecture" className="w-full sm:w-auto">
-              <button className="w-full sm:w-auto cursor-pointer inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-transparent hover:bg-white/5 text-white font-medium text-sm border border-neutral-800 hover:border-neutral-700 transition-all active:scale-95">
-                See how it works
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <a
+              href="#architecture"
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-neutral-800 bg-transparent px-7 py-3.5 text-sm font-medium text-white transition-all hover:border-neutral-700 hover:bg-white/5 active:scale-95"
+            >
+              See how it works
+              <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" />
             </a>
           </div>
         </div>
