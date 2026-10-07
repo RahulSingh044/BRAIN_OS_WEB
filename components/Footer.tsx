@@ -1,16 +1,6 @@
-import React from "react";
 import Link from "next/link";
 import {
   ArrowRight,
-  Crosshair,
-  Shield,
-  Terminal,
-  Cpu,
-  Database,
-  HelpCircle,
-  Key,
-  FileText,
-  Lock,
 } from "lucide-react";
 
 export default function BrainOSFooter() {
@@ -63,7 +53,7 @@ export default function BrainOSFooter() {
               </li>
               <li>
                 <Link
-                  href="/#architecture"
+                  href="/#desktop-app"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Desktop App
@@ -71,7 +61,7 @@ export default function BrainOSFooter() {
               </li>
               <li>
                 <Link
-                  href="/#security"
+                  href="/#chrome-extension"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Chrome Extension
@@ -96,15 +86,7 @@ export default function BrainOSFooter() {
             <ul className="flex flex-col space-y-3 text-sm font-medium">
               <li>
                 <a
-                  href="#api-docs"
-                  className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
-                >
-                  API Docs
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#getting-started"
+                  href="/getting-started"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Getting started
@@ -112,15 +94,7 @@ export default function BrainOSFooter() {
               </li>
               <li>
                 <a
-                  href="#sqlite-schema"
-                  className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
-                >
-                  SQLite schema
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#faq"
+                  href="/faq"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   FAQ
@@ -137,31 +111,7 @@ export default function BrainOSFooter() {
             <ul className="flex flex-col space-y-3 text-sm font-medium">
               <li>
                 <a
-                  href="#pgp"
-                  className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
-                >
-                  PGP public key
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#checksums"
-                  className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
-                >
-                  Checksums
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#builds"
-                  className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
-                >
-                  Builds
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#privacy"
+                  href="#security"
                   className="hover:underline hover:opacity-100 opacity-90 transition-opacity"
                 >
                   Privacy
