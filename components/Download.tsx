@@ -73,15 +73,6 @@ export default function Download() {
             No installers have been published yet. Check back soon for release
             notes and verified downloads.
           </p>
-          <a
-            href="https://github.com/RahulSingh044/BRAIN_OS_WEB"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#e6ff6a] transition-colors hover:text-white"
-          >
-            Follow project updates
-            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
