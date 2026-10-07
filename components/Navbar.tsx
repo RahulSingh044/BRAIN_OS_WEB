@@ -107,27 +107,37 @@ export default function BrainOSNavbar() {
         </div>
       </header>
 
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[60] min-[900px]:hidden">
-          <button
-            type="button"
-            aria-label="Close navigation menu"
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute inset-0 h-full w-full bg-black/60 backdrop-blur-[2px]"
-          />
-          <aside
-            id="compact-navigation"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="compact-navigation-title"
-            className="absolute right-0 top-0 flex h-full w-[min(20rem,calc(100vw-2rem))] flex-col border-l border-white/10 bg-zinc-800 p-6 text-white shadow-2xl sm:p-8"
-          >
+      <div
+        className={`fixed inset-0 z-[60] min-[900px]:hidden ${
+          isMenuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
+        <button
+          type="button"
+          aria-label="Close navigation menu"
+          tabIndex={isMenuOpen ? 0 : -1}
+          onClick={() => setIsMenuOpen(false)}
+          className={`absolute inset-0 h-full w-full bg-black/60 backdrop-blur-[2px] transition-opacity duration-300 motion-reduce:transition-none ${
+            isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+        />
+        <aside
+          id="compact-navigation"
+          role="dialog"
+          aria-modal={isMenuOpen}
+          aria-hidden={!isMenuOpen}
+          aria-labelledby="compact-navigation-title"
+          inert={!isMenuOpen}
+          className={`absolute right-0 top-0 z-10 flex h-full w-[min(20rem,calc(100vw-2rem))] flex-col border-l border-white/10 bg-zinc-800 p-6 text-white shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:p-8 ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
             <div className="mb-10 flex items-center justify-between">
               <h2
                 id="compact-navigation-title"
                 className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-300"
               >
-                Navigation
+                Brain OS
               </h2>
               <button
                 ref={closeButtonRef}
@@ -146,7 +156,7 @@ export default function BrainOSNavbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="border-b border-white/10 py-4 text-lg font-medium text-zinc-200 transition-colors hover:text-[#e6ff6a]"
+                  className="border-b border-white/10 py-4 text-lg font-medium text-zinc-200 transition-colors hover:text-lime-400"
                 >
                   {link.label}
                 </Link>
@@ -161,9 +171,8 @@ export default function BrainOSNavbar() {
               <Download aria-hidden="true" className="h-4 w-4" />
               Pre-register
             </Link>
-          </aside>
-        </div>
-      )}
+        </aside>
+      </div>
     </>
   );
 }

@@ -195,7 +195,7 @@ export default function BrainOSFooter() {
       </div>
 
       <div className="w-full h-[8vw] lg:h-[11.5vw] overflow-hidden text-center select-none pt-4">
-        <h1 className="text-[15vw] lg:text-[14.5vw] font-black tracking-tighter leading-none text-black opacity-95 uppercase whitespace-nowrap -translate-y-5 sm:translate-y-0">
+        <h1 className="text-[15vw] lg:text-[14.5vw] font-black tracking-tighter leading-none text-black opacity-95 uppercase whitespace-nowrap -translate-y-7 sm:translate-y-0">
           Brain OS
         </h1>
       </div>
