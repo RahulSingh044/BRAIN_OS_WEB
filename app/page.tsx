@@ -5,6 +5,7 @@ import Securtiy from '@/components/Security';
 import Download from '@/components/Download';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import FAQ from '@/components/FAQ';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Securtiy />
       <Architecture />
       <Download />
+      <FAQ />
       <Footer />
     </>
   );
