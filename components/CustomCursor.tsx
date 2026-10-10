@@ -161,7 +161,7 @@
                     filter: "blur(1px)",
                     }}
                 >
-                    <BrainSvg size={38} />
+                    <BrainSvg size={32} />
                 </div>
                 </div>
             );
